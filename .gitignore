@@ -30,3 +30,8 @@
 *.exe
 *.out
 *.app
+
+# Spotify credentials
+token.json
+tools/spotify_auth/config.py
+tools/spotify_auth/token.json
