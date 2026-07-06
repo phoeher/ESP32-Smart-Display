@@ -4,6 +4,7 @@
 #include <WiFi.h>
 #include "secrets.h"
 #include <HTTPClient.h>
+#include <ArduinoJson.h>
 
 // initialize variables here:
 
@@ -44,6 +45,21 @@ void testInternetConnection() {
   http.begin("http://" + String(serverIP) + ":5000/current-track");
   int httpResponseCode = http.GET();
   String payload = http.getString();
-  Serial.println(payload);
+  JsonDocument doc;
+  deserializeJson(doc, payload);
+
+  String trackTitle = doc["track_title"];
+  String artist1 = doc["artists"][0];
+  String album = doc["album"];
+  String isPlaying = doc["is_playing"];
+  String progressMs = doc["progress_ms"];
+  String durationMs = doc["duration_ms"];
+
+  Serial.println(trackTitle);
+  Serial.println(artist1);
+  Serial.println(album);
+  Serial.println(isPlaying);
+  Serial.println(progressMs);
+  Serial.println(durationMs);
   http.end();
 }
