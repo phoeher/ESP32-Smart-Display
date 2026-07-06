@@ -10,6 +10,9 @@
             "includePath": [
                 "C:/Arduino Projects/ESP32 Smart Display/include",
                 "C:/Arduino Projects/ESP32 Smart Display/src",
+                "C:/Users/School/.platformio/packages/framework-arduinoespressif32/libraries/HTTPClient/src",
+                "C:/Users/School/.platformio/packages/framework-arduinoespressif32/libraries/WiFiClientSecure/src",
+                "C:/Users/School/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src",
                 "C:/Users/School/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32s3/include/newlib/platform_include",
                 "C:/Users/School/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32s3/include/freertos/include",
                 "C:/Users/School/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32s3/include/freertos/include/esp_additions/freertos",
@@ -220,7 +223,6 @@
                 "C:/Users/School/.platformio/packages/framework-arduinoespressif32/libraries/Ethernet/src",
                 "C:/Users/School/.platformio/packages/framework-arduinoespressif32/libraries/FFat/src",
                 "C:/Users/School/.platformio/packages/framework-arduinoespressif32/libraries/FS/src",
-                "C:/Users/School/.platformio/packages/framework-arduinoespressif32/libraries/HTTPClient/src",
                 "C:/Users/School/.platformio/packages/framework-arduinoespressif32/libraries/HTTPUpdate/src",
                 "C:/Users/School/.platformio/packages/framework-arduinoespressif32/libraries/HTTPUpdateServer/src",
                 "C:/Users/School/.platformio/packages/framework-arduinoespressif32/libraries/I2S/src",
@@ -238,8 +240,6 @@
                 "C:/Users/School/.platformio/packages/framework-arduinoespressif32/libraries/USB/src",
                 "C:/Users/School/.platformio/packages/framework-arduinoespressif32/libraries/Update/src",
                 "C:/Users/School/.platformio/packages/framework-arduinoespressif32/libraries/WebServer/src",
-                "C:/Users/School/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src",
-                "C:/Users/School/.platformio/packages/framework-arduinoespressif32/libraries/WiFiClientSecure/src",
                 "C:/Users/School/.platformio/packages/framework-arduinoespressif32/libraries/WiFiProv/src",
                 "C:/Users/School/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src",
                 ""
@@ -249,6 +249,9 @@
                 "path": [
                     "C:/Arduino Projects/ESP32 Smart Display/include",
                     "C:/Arduino Projects/ESP32 Smart Display/src",
+                    "C:/Users/School/.platformio/packages/framework-arduinoespressif32/libraries/HTTPClient/src",
+                    "C:/Users/School/.platformio/packages/framework-arduinoespressif32/libraries/WiFiClientSecure/src",
+                    "C:/Users/School/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src",
                     "C:/Users/School/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32s3/include/newlib/platform_include",
                     "C:/Users/School/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32s3/include/freertos/include",
                     "C:/Users/School/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32s3/include/freertos/include/esp_additions/freertos",
@@ -459,7 +462,6 @@
                     "C:/Users/School/.platformio/packages/framework-arduinoespressif32/libraries/Ethernet/src",
                     "C:/Users/School/.platformio/packages/framework-arduinoespressif32/libraries/FFat/src",
                     "C:/Users/School/.platformio/packages/framework-arduinoespressif32/libraries/FS/src",
-                    "C:/Users/School/.platformio/packages/framework-arduinoespressif32/libraries/HTTPClient/src",
                     "C:/Users/School/.platformio/packages/framework-arduinoespressif32/libraries/HTTPUpdate/src",
                     "C:/Users/School/.platformio/packages/framework-arduinoespressif32/libraries/HTTPUpdateServer/src",
                     "C:/Users/School/.platformio/packages/framework-arduinoespressif32/libraries/I2S/src",
@@ -477,8 +479,6 @@
                     "C:/Users/School/.platformio/packages/framework-arduinoespressif32/libraries/USB/src",
                     "C:/Users/School/.platformio/packages/framework-arduinoespressif32/libraries/Update/src",
                     "C:/Users/School/.platformio/packages/framework-arduinoespressif32/libraries/WebServer/src",
-                    "C:/Users/School/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src",
-                    "C:/Users/School/.platformio/packages/framework-arduinoespressif32/libraries/WiFiClientSecure/src",
                     "C:/Users/School/.platformio/packages/framework-arduinoespressif32/libraries/WiFiProv/src",
                     "C:/Users/School/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src",
                     ""
