@@ -41,7 +41,7 @@ void connectToWiFi() {
 }
 void testInternetConnection() {
   HTTPClient http;
-  http.begin("http://api.ipify.org");
+  http.begin("http://" + String(serverIP) + ":5000/current-track");
   int httpResponseCode = http.GET();
   String payload = http.getString();
   Serial.println(payload);

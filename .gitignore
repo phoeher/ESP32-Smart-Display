@@ -38,3 +38,6 @@ tools/spotify_auth/token.json
 
 #Esp32 Smart Display secrets
 include/secrets.h
+
+# Virtual Environment
+.venv/
