@@ -11,6 +11,7 @@
 // put function declarations here:
 void connectToWiFi();
 void testInternetConnection();
+void fetchTrackData();
 
 // put your setup code here, to run once:
 void setup() {
@@ -22,7 +23,8 @@ void setup() {
 
 // put your main code here, to run repeatedly:
 void loop() {
-  //placeholder for main loop code
+  fetchTrackData();
+  delay(5000);
 }
 
 // put function definitions here:
@@ -41,6 +43,15 @@ void connectToWiFi() {
   Serial.println(WiFi.localIP());
 }
 void testInternetConnection() {
+  HTTPClient http;
+  http.begin("https://api.ipify.org/");
+  int httpResponseCode = http.GET();
+  String payload = http.getString();
+ 
+  Serial.println(payload);
+  http.end();
+}
+void fetchTrackData() {
   HTTPClient http;
   http.begin("http://" + String(serverIP) + ":5000/current-track");
   int httpResponseCode = http.GET();
