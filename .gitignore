@@ -37,7 +37,8 @@ tools/spotify_auth/config.py
 tools/spotify_auth/token.json
 
 #Esp32 Smart Display secrets
-include/secrets.h
+include/config.h
+src/config.cpp
 
 # Virtual Environment
 .venv/
