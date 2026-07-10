@@ -6,14 +6,17 @@
 
 #include "config.h"
 #include "refresh.h"
+#include "spotify_client.h"
 
 
 // initialize variables here:
+String accessToken = "";
+String trackTitle = "";
 
 // put function declarations here:
 void connectToWiFi();
 void testInternetConnection();
-//void fetchTrackData();
+void fetchTrackData();
 
 // put your setup code here, to run once:
 void setup() {
@@ -22,7 +25,7 @@ void setup() {
   connectToWiFi();
   testInternetConnection();
   
-  String accessToken = refreshAccessToken();
+  accessToken = refreshAccessToken();
 
   Serial.println("Access token:");
   Serial.println(accessToken);
@@ -31,8 +34,8 @@ void setup() {
 
 // put your main code here, to run repeatedly:
 void loop() {
-  //fetchTrackData();
-  //delay(5000);
+  fetchTrackData();
+  delay(5000);
 }
 
 // put function definitions here:
@@ -65,32 +68,8 @@ void testInternetConnection() {
   Serial.println(payload);
   http.end();
 }
-/*
+
 void fetchTrackData() {
-  // make a GET request to the server to fetch the current track data
-  HTTPClient http;
-  http.begin("http://" + String(SERVER_IP) + ":5000/current-track");
-  int httpResponseCode = http.GET();
-  String payload = http.getString();
-
-  // parse the JSON response and extract the track data
-  JsonDocument doc;
-  deserializeJson(doc, payload);
-
-  String trackTitle = doc["track_title"];
-  String artist1 = doc["artists"][0];
-  String album = doc["album"];
-  String isPlaying = doc["is_playing"];
-  String progressMs = doc["progress_ms"];
-  String durationMs = doc["duration_ms"];
-
-  // print the track data to the serial monitor
+  trackTitle = getCurrentlyPlaying(accessToken);
   Serial.println(trackTitle);
-  Serial.println(artist1);
-  Serial.println(album);
-  Serial.println(isPlaying);
-  Serial.println(progressMs);
-  Serial.println(durationMs);
-  http.end();
 }
-*/

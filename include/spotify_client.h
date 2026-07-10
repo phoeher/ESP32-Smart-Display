@@ -3,6 +3,6 @@
 
 #include <Arduino.h>
 
-
+String getCurrentlyPlaying(String& accessToken);
 
 #endif
