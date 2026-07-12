@@ -11,7 +11,7 @@
 
 // initialize variables here:
 String accessToken = "";
-String trackTitle = "";
+SpotifyTrack trackInfo;
 
 // put function declarations here:
 void connectToWiFi();
@@ -26,9 +26,6 @@ void setup() {
   testInternetConnection();
   
   accessToken = refreshAccessToken();
-
-  Serial.println("Access token:");
-  Serial.println(accessToken);
   
 }
 
@@ -70,6 +67,25 @@ void testInternetConnection() {
 }
 
 void fetchTrackData() {
-  trackTitle = getCurrentlyPlaying(accessToken);
-  Serial.println(trackTitle);
+
+  // get track data
+  trackInfo = getCurrentlyPlaying(accessToken);
+  
+  // check if track is playing
+  if (trackInfo.title == ""){
+    Serial.println("No track playing");
+  }
+  //print track data
+  else{
+    Serial.println(trackInfo.title);
+    Serial.println(trackInfo.artist);
+    Serial.println(trackInfo.album);
+    Serial.println(trackInfo.albumArtUrl);
+
+    Serial.println(trackInfo.isPlaying);
+
+    Serial.println(trackInfo.progressMs);
+    Serial.println(trackInfo.durationMs);
+  }
+  
 }

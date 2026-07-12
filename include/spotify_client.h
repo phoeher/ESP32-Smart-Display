@@ -3,6 +3,16 @@
 
 #include <Arduino.h>
 
-String getCurrentlyPlaying(String& accessToken);
+struct SpotifyTrack {
+    String title = "";
+    String artist = "";
+    String album = "";
+    String albumArtUrl = "";
+    bool isPlaying = false;
+    long progressMs = 0;
+    long durationMs = 0;
+};
+
+SpotifyTrack getCurrentlyPlaying(String& accessToken);
 
 #endif

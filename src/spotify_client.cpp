@@ -9,15 +9,31 @@ String getBearerHeader(const String& accessToken) {
     return "Bearer " + accessToken;
 }
 
-String getCurrentlyPlaying(String& accessToken) {
+SpotifyTrack getCurrentlyPlaying(String& accessToken) {
+    // create empty struct
+    SpotifyTrack track;
+
+    // create http object
     HTTPClient http;
 
+    // begin call to spotify
     http.begin("https://api.spotify.com/v1/me/player/currently-playing");
+    http.setTimeout(5000);
     http.addHeader("Authorization", getBearerHeader(accessToken));
 
+    // get response code
     int httpResponseCode = http.GET();
+
+    // check for no track playing code
+    if (httpResponseCode == 204) {
+        http.end();
+        return {};
+    }
+
+    // get response string
     String payload = http.getString();
 
+    // check for access code expiration
     if (httpResponseCode == 401){
 
         Serial.println("Access token expired. Refreshing...");
@@ -27,10 +43,11 @@ String getCurrentlyPlaying(String& accessToken) {
         accessToken = refreshAccessToken();
 
         if (accessToken == ""){
-            return "";
+            return {};
         }
 
         http.begin("https://api.spotify.com/v1/me/player/currently-playing");
+        http.setTimeout(5000);
         http.addHeader("Authorization", getBearerHeader(accessToken));
 
         httpResponseCode = http.GET();
@@ -38,11 +55,7 @@ String getCurrentlyPlaying(String& accessToken) {
 
     }
 
-    if (httpResponseCode == 204) {
-        http.end();
-        return "";
-    }
-
+    // check for all other errors
     if (httpResponseCode != 200) {
 
         Serial.println("Current track request failed.");
@@ -50,28 +63,31 @@ String getCurrentlyPlaying(String& accessToken) {
         Serial.println("Response: " + payload);
 
         http.end();
-        return "";
+        return {};
     }
 
     http.end();
 
+    // create doc object
     JsonDocument doc;
     DeserializationError error = deserializeJson(doc, payload);
 
+    // check for parsing error
     if (error) {
         Serial.println("JSON parsing failed");
         Serial.println(error.c_str());
-        return "";
+        return {};
     }
 
-    String trackTitle = doc["item"]["name"];
-    String artist = doc["item"]["artists"][0]["name"];
-    String album = doc["item"]["album"]["name"];
-    String albumArtUrl = doc["item"]["album"]["images"][0]["url"];
+    // assign struct variables to track information
+    track.title = doc["item"]["name"].as<String>();
+    track.artist = doc["item"]["artists"][0]["name"].as<String>();
+    track.album = doc["item"]["album"]["name"].as<String>();
+    track.albumArtUrl = doc["item"]["album"]["images"][0]["url"].as<String>();
 
-    bool isPlaying = doc["is_playing"];
-    long progressMs = doc["progress_ms"];
-    long durationMs = doc["item"]["duration_ms"];
+    track.isPlaying = doc["is_playing"].as<bool>();
+    track.progressMs = doc["progress_ms"].as<long>();
+    track.durationMs = doc["item"]["duration_ms"].as<long>();
 
-    return trackTitle;
+    return track;
 }
