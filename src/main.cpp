@@ -7,6 +7,8 @@
 #include "config.h"
 #include "refresh.h"
 #include "spotify_client.h"
+#include "time_client.h"
+#include "weather_client.h"
 
 
 // initialize variables here:
@@ -24,6 +26,8 @@ void setup() {
 
   connectToWiFi();
   testInternetConnection();
+  initializeTime();
+  getWeather();
   
   accessToken = refreshAccessToken();
   
@@ -31,6 +35,8 @@ void setup() {
 
 // put your main code here, to run repeatedly:
 void loop() {
+  Serial.println(getFormattedTime());
+  Serial.println(getFormattedDate());
   fetchTrackData();
   delay(5000);
 }
