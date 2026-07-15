@@ -9,7 +9,7 @@
 #include "spotify_client.h"
 #include "time_client.h"
 #include "weather_client.h"
-
+#include "display_client.h"
 
 // initialize variables here:
 String accessToken = "";
@@ -27,7 +27,11 @@ void setup() {
   connectToWiFi();
   testInternetConnection();
   initializeTime();
-  getWeather();
+  getWeather();  Serial.println("initializing display...");
+  initializeDisplay();
+  //showHelloWorld();
+  clearDisplay();
+  hibernateDisplay();
   
   accessToken = refreshAccessToken();
   
