@@ -33,7 +33,27 @@ String getFormattedTime(){
     strftime(
         timeString,
         sizeof(timeString),
-        "%I:%M %p",
+        "%I:%M",
+        &timeInfo
+    );
+
+    return String(timeString);
+}
+
+String getMeridiem(){
+
+    struct tm timeInfo;
+
+    if (!getLocalTime(&timeInfo)){
+        return "";
+    }
+
+    char timeString[20];
+
+    strftime(
+        timeString,
+        sizeof(timeString),
+        "%p",
         &timeInfo
     );
 

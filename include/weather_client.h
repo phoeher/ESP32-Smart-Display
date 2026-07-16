@@ -12,6 +12,8 @@ struct WeatherData {
     
     int precipitationProbability = 0;
     float uvIndex = 0;
+
+    const unsigned char* icon = nullptr;
 };
 
 WeatherData getWeather();

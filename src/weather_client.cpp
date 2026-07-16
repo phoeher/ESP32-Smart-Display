@@ -1,4 +1,5 @@
 #include "weather_client.h"
+#include "weather_icons.h"
 
 #include <HTTPClient.h>
 #include <ArduinoJson.h>
@@ -7,6 +8,8 @@ const float LATITUDE = 37.12;
 const float LONGITUDE = -76.46;
 
 String getWeatherCondition(int weatherCode);
+const unsigned char* getConditionBitmap(const String& condition);
+
 
 WeatherData getWeather() {
 
@@ -52,13 +55,7 @@ WeatherData getWeather() {
     weather.lowTemperature = doc["daily"]["temperature_2m_min"][0];
     weather.precipitationProbability = doc["daily"]["precipitation_probability_max"][0];
     weather.uvIndex = doc["daily"]["uv_index_max"][0];
-
-    Serial.println(weather.currentTemperature);
-    Serial.println(weather.highTemperature);
-    Serial.println(weather.lowTemperature);
-    Serial.println(weather.weatherCode);
-    Serial.println(weather.precipitationProbability);
-    Serial.println(weather.uvIndex);
+    weather.icon = getConditionBitmap(weather.weatherCode);
 
     return weather;
 }
@@ -96,5 +93,41 @@ String getWeatherCondition(int weatherCode){
     }
     else {
         return "Unknown";
+    }
+}
+
+const unsigned char* getConditionBitmap(const String& condition) {
+    if (condition == "Drizzle") {
+        return epd_bitmap_allArray[0];
+    }
+    else if (condition == "Fog") {
+        return epd_bitmap_allArray[1];
+    }
+    else if (condition == "Overcast") {
+        return epd_bitmap_allArray[2];
+    }
+    else if (condition == "Partly Cloudy") {
+        return epd_bitmap_allArray[3];
+    }
+    else if (condition == "Rain") {
+        return epd_bitmap_allArray[4];
+    }
+    else if (condition == "Rain showers") {
+        return epd_bitmap_allArray[5];
+    }
+    else if (condition == "Snow showers") {
+        return epd_bitmap_allArray[6];
+    }
+    else if (condition == "Snow") {
+        return epd_bitmap_allArray[7];
+    }
+    else if (condition == "Thunderstorm") {
+        return epd_bitmap_allArray[8];
+    }
+    else if (condition == "Clear") {
+        return epd_bitmap_allArray[9];
+    }
+    else{
+        return nullptr;
     }
 }

@@ -14,6 +14,7 @@
 // initialize variables here:
 String accessToken = "";
 SpotifyTrack trackInfo;
+String lastSavedTime = "";
 
 // put function declarations here:
 void connectToWiFi();
@@ -27,10 +28,21 @@ void setup() {
   connectToWiFi();
   testInternetConnection();
   initializeTime();
-  getWeather();  Serial.println("initializing display...");
+  WeatherData weather = getWeather();
+  lastSavedTime = getFormattedTime();
   initializeDisplay();
-  //showHelloWorld();
-  clearDisplay();
+  showIdleScreen(
+    getFormattedTime(),
+    getFormattedDate(),
+    getMeridiem(),
+    weather.currentTemperature,
+    weather.highTemperature,
+    weather.lowTemperature,
+    weather.weatherCode,
+    weather.precipitationProbability,
+    weather.uvIndex,
+    weather.icon
+  );
   hibernateDisplay();
   
   accessToken = refreshAccessToken();
@@ -42,6 +54,11 @@ void loop() {
   Serial.println(getFormattedTime());
   Serial.println(getFormattedDate());
   fetchTrackData();
+  if (lastSavedTime != getFormattedTime()){
+    updateTime(getFormattedTime());
+    lastSavedTime = getFormattedTime();
+  }
+
   delay(5000);
 }
 

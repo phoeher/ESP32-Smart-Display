@@ -6,5 +6,6 @@
 void initializeTime();
 String getFormattedTime();
 String getFormattedDate();
+String getMeridiem();
 
 #endif
